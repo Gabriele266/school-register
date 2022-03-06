@@ -24,12 +24,14 @@ class StudentsController(
         else ResponseEntity.badRequest().body("Invalid student input")
 
     @GetMapping("/{id}")
-    fun getStudentById(@PathVariable id: String): Student? =
-        studentsService.findStudentById(id)
+    fun getStudentById(@PathVariable id: String): ResponseEntity<Student?> =
+        if (studentsService.hasStudentWithId(id)) ResponseEntity.ok(studentsService.findStudentById(id))
+        else ResponseEntity.badRequest().body(null)
 
     @DeleteMapping("/{id}")
-    fun removeStudentById(@PathVariable id: String): Student? =
-        studentsService.removeStudentById(id)
+    fun removeStudentById(@PathVariable id: String): ResponseEntity<Student?> =
+        if (studentsService.hasStudentWithId(id)) ResponseEntity.ok(studentsService.removeStudentById(id))
+        else ResponseEntity.badRequest().body(null)
 
     @PostMapping("/update")
     fun updateStud(@RequestBody student: Student): ResponseEntity<UpdateResult<Student>> {
