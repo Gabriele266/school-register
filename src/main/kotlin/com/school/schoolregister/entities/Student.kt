@@ -1,38 +1,34 @@
 package com.school.schoolregister.entities
 
-import com.school.schoolregister.controllers.generateRandomInt
 import com.school.schoolregister.controllers.generateRandomString
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.DocumentReference
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 @Document
 data class Student(
     val name: String,
     val surname: String,
-    val age: Int,
+    val birthDate: Long = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC),
+    val email: String? = null,
+    val tel: String? = null,
+    @DocumentReference
+    var votes: MutableList<Vote> = mutableListOf()
 ) {
     @Id
     var id: String = ObjectId.get().toHexString()
-
-    companion object Factory {
-        fun fromInput(input: StudentInput): Student = Student(input.name, input.surname, input.age)
-    }
 }
-
-data class StudentInput(
-    val name: String,
-    val surname: String,
-    val age: Int
-)
 
 fun generateRandomStudent(): Student =
     Student(
         generateRandomString(),
         generateRandomString(),
-        generateRandomInt()
+        LocalDateTime.now().toEpochSecond(ZoneOffset.UTC),
     )
 
 fun studentIsValid(student: Student): Boolean =
-    student.age in (0..100) && student.name.matches("^[a-zA-Z ]*$".toRegex())
+    student.name.matches("^[a-zA-Z ]*$".toRegex())
             && student.surname.matches("^[a-zA-Z ]*$".toRegex())

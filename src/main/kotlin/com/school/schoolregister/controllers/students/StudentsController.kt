@@ -1,11 +1,9 @@
-package com.school.schoolregister.controllers
+package com.school.schoolregister.controllers.students
 
 import com.school.schoolregister.entities.Student
-import com.school.schoolregister.entities.StudentInput
 import com.school.schoolregister.entities.studentIsValid
-import com.school.schoolregister.services.StudentsService
-import com.school.schoolregister.services.UpdateResult
-import org.bson.types.ObjectId
+import com.school.schoolregister.services.students.StudentsService
+import com.school.schoolregister.services.common.UpdateResult
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

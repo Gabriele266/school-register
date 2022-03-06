@@ -22,6 +22,12 @@ fun generateRandomInt(min: Int = 0, max: Int = 200): Int =
     kotlin.math.abs(ThreadLocalRandom.current().nextInt() % (max - min) + min)
 
 /**
+ * Generates a randomic integer between min and max
+ */
+fun generateRandomLong(min: Long = 0, max: Long = 200): Long =
+    kotlin.math.abs(ThreadLocalRandom.current().nextLong() % (max - min) + min)
+
+/**
  * Generates a random sequence
  */
 fun <T> generateSequence(count: Int, generator: (index: Int) -> T): Sequence<T> {

@@ -2,12 +2,14 @@ package com.school.schoolregister.controllers
 
 import com.school.schoolregister.entities.Student
 import com.school.schoolregister.entities.generateRandomStudent
-import com.school.schoolregister.services.StudentsService
+import com.school.schoolregister.services.students.StudentsService
 import org.assertj.core.api.Assertions.assertThat
-import org.bson.types.ObjectId
+import org.assertj.core.api.LocalDateTimeAssert
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 @SpringBootTest
 class StudentsServiceTest(
@@ -18,7 +20,7 @@ class StudentsServiceTest(
     fun `It should correctly add a new student`() {
         val allStudentsBefore = studentsService.findStudents().size
 
-        val addStudent = Student(name = "TestS", surname = "TestSur", age = 45)
+        val addStudent = Student(name = "TestS", surname = "TestSur", LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))
         assertThat(studentsService.saveStudent(addStudent)).isEqualTo(addStudent)
         val allStudentsAfter = studentsService.findStudents().size
 
@@ -35,7 +37,6 @@ class StudentsServiceTest(
             Student(
                 name = generateRandomString(10),
                 surname = generateRandomString(10),
-                age = generateRandomInt()
             )
         }.toList()
 
@@ -69,7 +70,7 @@ class StudentsServiceTest(
         val student = generateRandomStudent()
 
         assertThat(studentsService.saveStudent(student)).isEqualTo(student)
-        val update = Student(name = "Update", surname = "Test", age = student.age).apply {
+        val update = Student(name = "Update", surname = "Test").apply {
             id = student.id
         }
 
