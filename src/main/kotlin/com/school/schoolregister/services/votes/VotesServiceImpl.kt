@@ -28,8 +28,16 @@ class VotesServiceImpl(
         return vote
     }
 
-    override fun updateVoteById(voteId: String): UpdateResult<Vote> {
-        TODO("Not yet implemented")
+    override fun updateVote(vote: Vote): UpdateResult<Vote> {
+        val voteID = ObjectId(vote.id)
+
+        val voteOriginal = votesRepository.findById(voteID).orElse(null)
+
+        return if (voteOriginal != null) {
+            votesRepository.deleteById(voteID)
+            votesRepository.save(vote)
+            UpdateResult.successful(vote)
+        } else UpdateResult.failed()
     }
 
     override fun removeVoteById(voteId: String): RemoveResult<Vote> {

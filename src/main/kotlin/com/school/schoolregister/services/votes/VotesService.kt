@@ -6,7 +6,7 @@ import com.school.schoolregister.services.common.UpdateResult
 
 interface VotesService {
     fun saveVote(vote: Vote): Vote
-    fun updateVoteById(voteId: String): UpdateResult<Vote>
+    fun updateVote(vote: Vote): UpdateResult<Vote>
     fun removeVoteById(voteId: String): RemoveResult<Vote>
     fun hasVoteWithId(voteId: String): Boolean
     fun findVoteById(voteId: String): Vote?

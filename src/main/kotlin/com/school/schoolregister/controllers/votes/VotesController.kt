@@ -2,6 +2,7 @@ package com.school.schoolregister.controllers.votes
 
 import com.school.schoolregister.entities.Vote
 import com.school.schoolregister.services.common.RemoveResult
+import com.school.schoolregister.services.common.UpdateResult
 import com.school.schoolregister.services.votes.VotesService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -29,5 +30,13 @@ class VotesController(
 
         return if (res.successful) ResponseEntity.ok(res)
         else return ResponseEntity.badRequest().body(res)
+    }
+
+    @PutMapping
+    fun updateVote(@RequestBody vote: Vote): ResponseEntity<UpdateResult<Vote>> {
+        val res = votesService.updateVote(vote)
+
+        return if (res.successful) ResponseEntity.ok(res)
+        else ResponseEntity.badRequest().body(res)
     }
 }
