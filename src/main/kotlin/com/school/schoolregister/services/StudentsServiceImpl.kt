@@ -19,8 +19,8 @@ class StudentsServiceImpl(
     override fun findStudents(): List<Student> =
         studentsRepository.findAll()
 
-    override fun findStudentsCount(): Int =
-        studentsRepository.findAll().size
+    override fun findStudentsCount(): Long =
+        studentsRepository.count()
 
     /**
      * Removes a student by id
@@ -33,5 +33,18 @@ class StudentsServiceImpl(
             studentsRepository.deleteById(id)
 
         return student
+    }
+
+    override fun hasStudentWithId(id: ObjectId): Boolean =
+        studentsRepository.findById(id).isPresent
+
+    override fun updateStudent(student: Student): UpdateResult<Student> {
+        if (!hasStudentWithId(student.id)) return UpdateResult.failed()
+
+        // Remove by id
+        removeStudentById(student.id)
+
+        saveStudent(student)
+        return UpdateResult.successful(student)
     }
 }

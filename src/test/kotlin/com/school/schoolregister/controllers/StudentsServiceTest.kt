@@ -61,5 +61,21 @@ class StudentsServiceTest(
         assertThat(studentsService.saveStudent(student)).isEqualTo(student)
         assertThat(ObjectId.isValid(studentId.toHexString()))
         assertThat(studentsService.findStudentById(studentId)).isEqualTo(student)
+
+        assertThat(studentsService.removeStudentById(studentId)).isEqualTo(student)
+    }
+
+    @Test
+    fun `It should correctly update this student`() {
+        val student = generateRandomStudent()
+
+        assertThat(studentsService.saveStudent(student)).isEqualTo(student)
+        val update = Student(name = "Update", surname = "Test", id = student.id, age = student.age)
+        val updateResult = studentsService.updateStudent(update)
+        assertThat(updateResult.updatedCount).isEqualTo(1)
+        assertThat(updateResult.updatedEntity).isEqualTo(update)
+        assertThat(updateResult.successful).isEqualTo(true)
+
+        assertThat(studentsService.removeStudentById(student.id)).isEqualTo(update)
     }
 }

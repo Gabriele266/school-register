@@ -8,5 +8,7 @@ interface StudentsService {
     fun findStudentById(id: ObjectId): Student?
     fun findStudents(): List<Student>
     fun removeStudentById(id: ObjectId): Student?
-    fun findStudentsCount(): Int
+    fun findStudentsCount(): Long
+    fun updateStudent(student: Student): UpdateResult<Student>
+    fun hasStudentWithId(id: ObjectId): Boolean
 }
