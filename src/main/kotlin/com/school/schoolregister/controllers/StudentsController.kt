@@ -1,8 +1,11 @@
 package com.school.schoolregister.controllers
 
 import com.school.schoolregister.entities.Student
+import com.school.schoolregister.entities.StudentInput
 import com.school.schoolregister.services.StudentsService
+import com.school.schoolregister.services.UpdateResult
 import org.bson.types.ObjectId
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -20,9 +23,17 @@ class StudentsController(
 
     @GetMapping("/{id}")
     fun getStudentById(@PathVariable id: String): Student? =
-        studentsService.findStudentById(ObjectId(id))
+        studentsService.findStudentById(id)
 
     @DeleteMapping("/{id}")
     fun removeStudentById(@PathVariable id: String): Student? =
-        studentsService.removeStudentById(ObjectId(id))
+        studentsService.removeStudentById(id)
+
+    @PostMapping("/update")
+    fun updateStud(@RequestBody student: Student): ResponseEntity<UpdateResult<Student>> {
+        val updateResult = studentsService.updateStudent(student)
+
+        return if (updateResult.isSuccessful()) ResponseEntity.ok(updateResult)
+        else ResponseEntity.badRequest().body(updateResult)
+    }
 }

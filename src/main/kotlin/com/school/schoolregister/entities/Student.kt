@@ -11,7 +11,19 @@ data class Student(
     val name: String,
     val surname: String,
     val age: Int,
-    @Id val id: ObjectId = ObjectId.get()
+) {
+    @Id
+    var id: String = ObjectId.get().toHexString()
+
+    companion object Factory {
+        fun fromInput(input: StudentInput): Student = Student(input.name, input.surname, input.age)
+    }
+}
+
+data class StudentInput(
+    val name: String,
+    val surname: String,
+    val age: Int
 )
 
 fun generateRandomStudent(): Student =

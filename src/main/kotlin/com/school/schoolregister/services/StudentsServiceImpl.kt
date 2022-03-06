@@ -13,8 +13,8 @@ class StudentsServiceImpl(
     override fun saveStudent(input: Student): Student =
         studentsRepository.save(input)
 
-    override fun findStudentById(id: ObjectId): Student? =
-        studentsRepository.findById(id).orElse(null)
+    override fun findStudentById(id: String): Student? =
+        studentsRepository.findById(ObjectId(id)).orElse(null)
 
     override fun findStudents(): List<Student> =
         studentsRepository.findAll()
@@ -26,17 +26,17 @@ class StudentsServiceImpl(
      * Removes a student by id
      * @param id Id to remove
      */
-    override fun removeStudentById(id: ObjectId): Student? {
-        val student = studentsRepository.findById(id).orElse(null)
+    override fun removeStudentById(id: String): Student? {
+        val student = studentsRepository.findById(ObjectId(id)).orElse(null)
 
         if (student != null)
-            studentsRepository.deleteById(id)
+            studentsRepository.deleteById(ObjectId(id))
 
         return student
     }
 
-    override fun hasStudentWithId(id: ObjectId): Boolean =
-        studentsRepository.findById(id).isPresent
+    override fun hasStudentWithId(id: String): Boolean =
+        studentsRepository.findById(ObjectId(id)).isPresent
 
     override fun updateStudent(student: Student): UpdateResult<Student> {
         if (!hasStudentWithId(student.id)) return UpdateResult.failed()

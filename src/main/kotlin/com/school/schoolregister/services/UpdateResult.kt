@@ -12,4 +12,7 @@ data class UpdateResult<T>(
         fun <T> successful(data: T): UpdateResult<T> =
             UpdateResult(1, true, data)
     }
+
+    fun isSuccessful(): Boolean =
+        successful && updatedCount > 0
 }
