@@ -2,6 +2,7 @@ package com.school.schoolregister.controllers
 
 import com.school.schoolregister.entities.Student
 import com.school.schoolregister.entities.StudentInput
+import com.school.schoolregister.entities.studentIsValid
 import com.school.schoolregister.services.StudentsService
 import com.school.schoolregister.services.UpdateResult
 import org.bson.types.ObjectId
@@ -18,8 +19,9 @@ class StudentsController(
         studentsService.findStudents()
 
     @PostMapping
-    fun addStudent(@RequestBody student: Student): Student =
-        studentsService.saveStudent(student)
+    fun addStudent(@RequestBody student: Student): ResponseEntity<Any> =
+        if (studentIsValid(student)) ResponseEntity.ok(studentsService.saveStudent(student))
+        else ResponseEntity.badRequest().body("Invalid student input")
 
     @GetMapping("/{id}")
     fun getStudentById(@PathVariable id: String): Student? =

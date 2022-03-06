@@ -1,5 +1,6 @@
 package com.school.schoolregister.controllers
 
+import java.lang.Math.abs
 import java.util.concurrent.ThreadLocalRandom
 
 /**
@@ -18,7 +19,7 @@ fun generateRandomString(length: Int = 10): String {
  * Generates a randomic integer between min and max
  */
 fun generateRandomInt(min: Int = 0, max: Int = 200): Int =
-    ThreadLocalRandom.current().nextInt() % (max - min) + min
+    kotlin.math.abs(ThreadLocalRandom.current().nextInt() % (max - min) + min)
 
 /**
  * Generates a random sequence

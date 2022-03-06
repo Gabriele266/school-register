@@ -32,3 +32,7 @@ fun generateRandomStudent(): Student =
         generateRandomString(),
         generateRandomInt()
     )
+
+fun studentIsValid(student: Student): Boolean =
+    student.age in (0..100) && student.name.matches("^[a-zA-Z ]*$".toRegex())
+            && student.surname.matches("^[a-zA-Z ]*$".toRegex())
