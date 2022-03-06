@@ -3,6 +3,7 @@ package com.school.schoolregister.services
 import com.school.schoolregister.entities.Student
 import com.school.schoolregister.repositories.StudentsRepository
 import org.bson.types.ObjectId
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
@@ -17,6 +18,9 @@ class StudentsServiceImpl(
 
     override fun findStudents(): List<Student> =
         studentsRepository.findAll()
+
+    override fun findStudentsCount(): Int =
+        studentsRepository.findAll().size
 
     /**
      * Removes a student by id
