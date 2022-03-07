@@ -4,15 +4,24 @@ import com.school.schoolregister.entities.Teacher
 import com.school.schoolregister.repositories.TeacherRepository
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
+import com.school.schoolregister.services.mail.MailService
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
 
 @Service
 class TeachersServiceImpl(
     private val teacherRepository: TeacherRepository,
+    private val mailService: MailService
 ) : TeachersService {
-    override fun saveTeacher(teacher: Teacher): Teacher =
-        teacherRepository.save(teacher)
+    override fun saveTeacher(teacher: Teacher): Teacher {
+        mailService.sendEMailTo(
+            teacher.email,
+            subject = "Welcome in this school!",
+            body = "Very important, do not forget to dry your plant!!"
+        )
+
+        return teacherRepository.save(teacher)
+    }
 
     override fun findTeacherById(id: String): Teacher? =
         teacherRepository.findById(ObjectId(id)).orElse(null)
@@ -24,10 +33,17 @@ class TeachersServiceImpl(
         val teacher = teacherRepository.findById(ObjectId(id)).orElse(null)
 
         return if (teacher != null) {
+            // Send deletions email
+            mailService.sendEMailTo(
+                teacher.email,
+                "Account deletion",
+                "<h1>Oooops, your account got deleted</h1> <br> Maybe you forgot to dry your plant? In that case you should be vary <b>scared</b>. "
+            )
             teacherRepository.deleteById(ObjectId(id))
 
             RemoveResult.successful(teacher)
         } else RemoveResult.failed("Invalid teacher ID")
+
     }
 
     override fun findTeacherCount(): Long =
