@@ -28,6 +28,9 @@ class VotesServiceImpl(
         return vote
     }
 
+    override fun count(): Long =
+        votesRepository.count()
+
     override fun updateVote(vote: Vote): UpdateResult<Vote> {
         val voteID = ObjectId(vote.id)
 

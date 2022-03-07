@@ -11,4 +11,5 @@ interface VotesService {
     fun hasVoteWithId(voteId: String): Boolean
     fun findVoteById(voteId: String): Vote?
     fun findAll(): List<Vote>
+    fun count(): Long
 }

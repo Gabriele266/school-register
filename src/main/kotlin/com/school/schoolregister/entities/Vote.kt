@@ -6,11 +6,11 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 @Document
 data class Vote(
-    val studentID: String,
-    val teacherID: String,
-    val value: Float,
-    val dateTime: Long,
-    val description: String
+    var studentID: String,
+    var teacherID: String,
+    var value: Float,
+    var dateTime: Long,
+    var description: String
 ) {
     @Id
     var id = ObjectId.get().toHexString()

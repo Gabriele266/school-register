@@ -1,6 +1,8 @@
 package com.school.schoolregister.controllers
 
 import java.lang.Math.abs
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.util.concurrent.ThreadLocalRandom
 
 /**
@@ -38,3 +40,6 @@ fun <T> generateSequence(count: Int, generator: (index: Int) -> T): Sequence<T> 
 
     return list.asSequence()
 }
+
+fun currentDateTimeMillis(): Long =
+    LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
