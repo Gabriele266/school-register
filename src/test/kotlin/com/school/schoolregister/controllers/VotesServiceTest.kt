@@ -15,17 +15,12 @@ import org.springframework.context.annotation.Import
 
 @SpringBootTest
 @Import(TestEntitiesConfiguration::class)
-class VotesServiceTest(
-    @Autowired
+class VotesServiceTest @Autowired constructor(
     private val votesService: VotesService,
-    @Autowired
     private val studentsService: StudentsService,
+    private val student: Student,
+    private val vote: Vote
 ) {
-    @Autowired
-    private lateinit var student: Student
-
-    @Autowired
-    private lateinit var vote: Vote
 
     @Test
     fun `It should correctly return all votes`() {
