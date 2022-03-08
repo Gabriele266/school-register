@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.mail
+package com.school.schoolregister.services.mail.configuration
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

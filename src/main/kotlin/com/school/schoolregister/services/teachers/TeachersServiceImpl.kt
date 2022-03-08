@@ -14,7 +14,7 @@ class TeachersServiceImpl(
     private val mailService: MailService
 ) : TeachersService {
     override fun saveTeacher(teacher: Teacher): Teacher {
-        mailService.sendEMailTo(
+        mailService.scheduleMail(
             teacher.email,
             subject = "Welcome in this school!",
             body = "Very important, do not forget to dry your plant!!"
@@ -34,7 +34,7 @@ class TeachersServiceImpl(
 
         return if (teacher != null) {
             // Send deletions email
-            mailService.sendEMailTo(
+            mailService.scheduleMail(
                 teacher.email,
                 "Account deletion",
                 "<h1>Oooops, your account got deleted</h1> <br> Maybe you forgot to dry your plant? In that case you should be vary <b>scared</b>. "
