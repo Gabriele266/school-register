@@ -20,6 +20,15 @@ data class Student(
 ) {
     @Id
     var id: String = ObjectId.get().toHexString()
+
+    constructor(input: StudentInput) : this(
+        input.name,
+        input.surname,
+        input.birthDate,
+        input.email,
+        input.tel,
+        input.votes
+    )
 }
 
 fun generateRandomStudent(): Student =
