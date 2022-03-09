@@ -1,6 +1,6 @@
 package com.school.schoolregister.services.students
 
-import com.school.schoolregister.entities.Student
+import com.school.schoolregister.domain.Student
 import com.school.schoolregister.services.common.UpdateResult
 
 interface StudentsService {

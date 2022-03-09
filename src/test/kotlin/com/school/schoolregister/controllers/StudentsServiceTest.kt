@@ -1,10 +1,9 @@
 package com.school.schoolregister.controllers
 
-import com.school.schoolregister.entities.Student
-import com.school.schoolregister.entities.generateRandomStudent
+import com.school.schoolregister.domain.Student
+import com.school.schoolregister.domain.generateRandomStudent
 import com.school.schoolregister.services.students.StudentsService
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.LocalDateTimeAssert
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

@@ -1,6 +1,6 @@
 package com.school.schoolregister.services.teachers
 
-import com.school.schoolregister.entities.Teacher
+import com.school.schoolregister.domain.Teacher
 import com.school.schoolregister.repositories.TeacherRepository
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult

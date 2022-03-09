@@ -1,6 +1,6 @@
 package com.school.schoolregister.repositories
 
-import com.school.schoolregister.entities.Student
+import com.school.schoolregister.domain.Student
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.repository.MongoRepository
 

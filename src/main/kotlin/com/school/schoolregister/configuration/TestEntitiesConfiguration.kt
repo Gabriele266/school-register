@@ -2,9 +2,9 @@ package com.school.schoolregister.configuration
 
 import com.school.schoolregister.controllers.currentDateTimeMillis
 import com.school.schoolregister.controllers.generateRandomString
-import com.school.schoolregister.entities.Student
-import com.school.schoolregister.entities.Vote
-import com.school.schoolregister.entities.generateRandomStudent
+import com.school.schoolregister.domain.Student
+import com.school.schoolregister.domain.Vote
+import com.school.schoolregister.domain.generateRandomStudent
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.context.annotation.Bean
 

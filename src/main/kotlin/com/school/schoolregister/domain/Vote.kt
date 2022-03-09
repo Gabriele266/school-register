@@ -1,4 +1,4 @@
-package com.school.schoolregister.entities
+package com.school.schoolregister.domain
 
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id

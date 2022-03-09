@@ -1,7 +1,7 @@
 package com.school.schoolregister.controllers.students
 
-import com.school.schoolregister.entities.Student
-import com.school.schoolregister.entities.studentIsValid
+import com.school.schoolregister.domain.Student
+import com.school.schoolregister.domain.studentIsValid
 import com.school.schoolregister.services.students.StudentsService
 import com.school.schoolregister.services.common.UpdateResult
 import org.springframework.http.ResponseEntity

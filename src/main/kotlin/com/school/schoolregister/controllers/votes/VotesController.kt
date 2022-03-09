@@ -1,6 +1,6 @@
 package com.school.schoolregister.controllers.votes
 
-import com.school.schoolregister.entities.Vote
+import com.school.schoolregister.domain.Vote
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
 import com.school.schoolregister.services.votes.VotesService

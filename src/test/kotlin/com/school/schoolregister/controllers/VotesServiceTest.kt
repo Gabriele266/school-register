@@ -1,13 +1,12 @@
 package com.school.schoolregister.controllers
 
 import com.school.schoolregister.configuration.TestEntitiesConfiguration
-import com.school.schoolregister.entities.Student
-import com.school.schoolregister.entities.Vote
-import com.school.schoolregister.entities.generateRandomStudent
+import com.school.schoolregister.domain.Student
+import com.school.schoolregister.domain.Vote
+import com.school.schoolregister.domain.generateRandomStudent
 import com.school.schoolregister.services.students.StudentsService
 import com.school.schoolregister.services.votes.VotesService
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

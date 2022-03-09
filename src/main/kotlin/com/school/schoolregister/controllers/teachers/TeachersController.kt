@@ -1,7 +1,6 @@
 package com.school.schoolregister.controllers.teachers
 
-import com.mongodb.client.result.DeleteResult
-import com.school.schoolregister.entities.Teacher
+import com.school.schoolregister.domain.Teacher
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.teachers.TeachersService
 import org.springframework.http.ResponseEntity

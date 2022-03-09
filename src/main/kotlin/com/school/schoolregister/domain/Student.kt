@@ -1,4 +1,4 @@
-package com.school.schoolregister.entities
+package com.school.schoolregister.domain
 
 import com.school.schoolregister.controllers.generateRandomString
 import org.bson.types.ObjectId
