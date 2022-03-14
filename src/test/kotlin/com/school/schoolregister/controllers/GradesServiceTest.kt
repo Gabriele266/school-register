@@ -1,8 +1,8 @@
 package com.school.schoolregister.controllers
 
 import com.school.schoolregister.configuration.TestEntitiesConfiguration
+import com.school.schoolregister.domain.Grade
 import com.school.schoolregister.domain.Student
-import com.school.schoolregister.domain.Vote
 import com.school.schoolregister.domain.generateRandomStudent
 import com.school.schoolregister.services.students.StudentsService
 import com.school.schoolregister.services.votes.VotesService
@@ -14,11 +14,11 @@ import org.springframework.context.annotation.Import
 
 @SpringBootTest
 @Import(TestEntitiesConfiguration::class)
-class VotesServiceTest @Autowired constructor(
+class GradesServiceTest @Autowired constructor(
     private val votesService: VotesService,
     private val studentsService: StudentsService,
     private val student: Student,
-    private val vote: Vote
+    private val vote: Grade
 ) {
 
     @Test
@@ -56,7 +56,7 @@ class VotesServiceTest @Autowired constructor(
     @Test
     fun `It should correctly return the details of this vote`() {
         val student = generateRandomStudent()
-        val vote = Vote(
+        val vote = Grade(
             student.id,
             value = 4F,
             dateTime = currentDateTimeMillis(),

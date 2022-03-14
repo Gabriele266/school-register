@@ -9,5 +9,5 @@ data class StudentInput(
     val birthDate: Long = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC),
     val email: String? = null,
     val tel: String? = null,
-    var votes: MutableList<Vote> = mutableListOf()
+    var votes: MutableList<Grade> = mutableListOf()
 )

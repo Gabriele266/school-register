@@ -16,7 +16,7 @@ data class Student(
     val email: String? = null,
     val tel: String? = null,
     @DocumentReference
-    var votes: MutableList<Vote> = mutableListOf()
+    var votes: MutableList<Grade> = mutableListOf()
 ) {
     @Id
     var id: String = ObjectId.get().toHexString()

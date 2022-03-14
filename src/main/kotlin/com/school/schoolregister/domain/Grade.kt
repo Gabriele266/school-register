@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document
-data class Vote(
+data class Grade(
     var studentID: String,
     var teacherID: String,
     var value: Float,

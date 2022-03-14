@@ -1,6 +1,6 @@
 package com.school.schoolregister.services.votes
 
-import com.school.schoolregister.domain.Vote
+import com.school.schoolregister.domain.Grade
 import com.school.schoolregister.repositories.VotesRepository
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
@@ -13,7 +13,7 @@ class VotesServiceImpl(
     private val votesRepository: VotesRepository,
     private val studentsService: StudentsService
 ) : VotesService {
-    override fun saveVote(vote: Vote): Vote {
+    override fun saveVote(vote: Grade): Grade {
         val studentID = vote.studentID
         votesRepository.save(vote)
 
@@ -30,7 +30,7 @@ class VotesServiceImpl(
     override fun count(): Long =
         votesRepository.count()
 
-    override fun updateVote(vote: Vote): UpdateResult<Vote> {
+    override fun updateVote(vote: Grade): UpdateResult<Grade> {
         val voteID = ObjectId(vote.id)
 
         val voteOriginal = votesRepository.findById(voteID).orElse(null)
@@ -42,8 +42,8 @@ class VotesServiceImpl(
         } else UpdateResult.failed()
     }
 
-    override fun removeVoteById(voteId: String): RemoveResult<Vote> {
-        val vote: Vote? = votesRepository.findById(ObjectId(voteId)).orElse(null)
+    override fun removeVoteById(voteId: String): RemoveResult<Grade> {
+        val vote: Grade? = votesRepository.findById(ObjectId(voteId)).orElse(null)
         return if (vote != null) {
             val studentID = vote.studentID
             votesRepository.deleteById(ObjectId(voteId))
@@ -63,10 +63,10 @@ class VotesServiceImpl(
     override fun hasVoteWithId(voteId: String): Boolean =
         votesRepository.findById(ObjectId(voteId)).isPresent
 
-    override fun findVoteById(voteId: String): Vote? =
+    override fun findVoteById(voteId: String): Grade? =
         votesRepository.findById(ObjectId(voteId)).orElse(null)
 
-    override fun findAll(): List<Vote> =
+    override fun findAll(): List<Grade> =
         votesRepository.findAll()
 
 }

@@ -1,6 +1,6 @@
 package com.school.schoolregister.controllers.votes
 
-import com.school.schoolregister.domain.Vote
+import com.school.schoolregister.domain.Grade
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
 import com.school.schoolregister.services.votes.VotesService
@@ -13,19 +13,19 @@ class VotesController(
     private val votesService: VotesService
 ) {
     @GetMapping
-    fun getVotes(): ResponseEntity<List<Vote>> =
+    fun getVotes(): ResponseEntity<List<Grade>> =
         ResponseEntity.ok(
             votesService.findAll()
         )
 
     @PostMapping
-    fun addVote(@RequestBody vote: Vote): ResponseEntity<Vote> =
+    fun addVote(@RequestBody vote: Grade): ResponseEntity<Grade> =
         ResponseEntity.ok(
             votesService.saveVote(vote)
         )
 
     @DeleteMapping("/{id}")
-    fun removeVoteById(@PathVariable id: String): ResponseEntity<RemoveResult<Vote>> {
+    fun removeVoteById(@PathVariable id: String): ResponseEntity<RemoveResult<Grade>> {
         val res = votesService.removeVoteById(id)
 
         return if (res.successful) ResponseEntity.ok(res)
@@ -33,8 +33,8 @@ class VotesController(
     }
 
     @PutMapping
-    fun updateVote(@RequestBody vote: Vote): ResponseEntity<UpdateResult<Vote>> {
-        val res = votesService.updateVote(vote)
+    fun updateVote(@RequestBody grade: Grade): ResponseEntity<UpdateResult<Grade>> {
+        val res = votesService.updateVote(grade)
 
         return if (res.successful) ResponseEntity.ok(res)
         else ResponseEntity.badRequest().body(res)

@@ -1,9 +1,9 @@
 package com.school.schoolregister.repositories
 
-import com.school.schoolregister.domain.Vote
+import com.school.schoolregister.domain.Grade
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.repository.MongoRepository
 
-interface VotesRepository : MongoRepository<Vote, ObjectId> {
-    override fun <S : Vote?> save(entity: S): S
+interface VotesRepository : MongoRepository<Grade, ObjectId> {
+    override fun <S : Grade?> save(entity: S): S
 }
