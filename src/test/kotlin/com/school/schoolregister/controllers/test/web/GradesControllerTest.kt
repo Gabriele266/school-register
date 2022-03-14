@@ -1,6 +1,5 @@
 package com.school.schoolregister.controllers.test.web
 
-import com.school.schoolregister.services.students.StudentsService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,9 +10,7 @@ import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class GradesControllerTest @Autowired constructor(
-    private val studentsService: StudentsService,
-) {
+class GradesControllerTest {
 
     @LocalServerPort
     private var port: Int = 0
@@ -21,6 +18,11 @@ class GradesControllerTest @Autowired constructor(
     @Autowired
     private lateinit var restTemplate: TestRestTemplate
 
+    /**
+     * Accesses to an endpoint using the current local server address.
+     *
+     * @param endpoint The endpoint to use
+     */
     private fun access(endpoint: String) = "http://localhost:${port}$endpoint"
 
     @Test
