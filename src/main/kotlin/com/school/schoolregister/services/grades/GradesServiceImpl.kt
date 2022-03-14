@@ -1,6 +1,7 @@
-package com.school.schoolregister.services.votes
+package com.school.schoolregister.services.grades
 
 import com.school.schoolregister.domain.Grade
+import com.school.schoolregister.exceptions.InvalidStudentReferenceException
 import com.school.schoolregister.repositories.VotesRepository
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
@@ -9,20 +10,19 @@ import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
 
 @Service
-class VotesServiceImpl(
+class GradesServiceImpl(
     private val votesRepository: VotesRepository,
-    private val studentsService: StudentsService
-) : VotesService {
+    private val studentsService: StudentsService,
+) : GradesService {
+
+    @Throws(InvalidStudentReferenceException::class)
     override fun saveVote(vote: Grade): Grade {
         val studentID = vote.studentID
+
+        // Check if student reference is valid or throw exception
+        studentsService.findStudentById(studentID) ?: throw InvalidStudentReferenceException(studentID, null)
+
         votesRepository.save(vote)
-
-        val stud = studentsService.findStudentById(studentID)
-
-        if (stud != null) {
-            stud.votes.add(vote)
-            studentsService.updateStudent(stud)
-        }
 
         return vote
     }
@@ -45,16 +45,7 @@ class VotesServiceImpl(
     override fun removeVoteById(voteId: String): RemoveResult<Grade> {
         val vote: Grade? = votesRepository.findById(ObjectId(voteId)).orElse(null)
         return if (vote != null) {
-            val studentID = vote.studentID
             votesRepository.deleteById(ObjectId(voteId))
-            val student = studentsService.findStudentById(studentID)
-
-            if (student != null) {
-                student.votes.removeIf {
-                    it.studentID == studentID
-                }
-                studentsService.updateStudent(student)
-            }
 
             RemoveResult.successful(vote)
         } else RemoveResult.failed("Invalid remove id")

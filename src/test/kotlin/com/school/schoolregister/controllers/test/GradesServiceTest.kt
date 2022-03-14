@@ -1,11 +1,13 @@
-package com.school.schoolregister.controllers
+package com.school.schoolregister.controllers.test
 
 import com.school.schoolregister.configuration.TestEntitiesConfiguration
+import com.school.schoolregister.controllers.currentDateTimeMillis
+import com.school.schoolregister.controllers.generateRandomString
 import com.school.schoolregister.domain.Grade
 import com.school.schoolregister.domain.Student
 import com.school.schoolregister.domain.generateRandomStudent
+import com.school.schoolregister.services.grades.GradesService
 import com.school.schoolregister.services.students.StudentsService
-import com.school.schoolregister.services.votes.VotesService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,7 +17,7 @@ import org.springframework.context.annotation.Import
 @SpringBootTest
 @Import(TestEntitiesConfiguration::class)
 class GradesServiceTest @Autowired constructor(
-    private val votesService: VotesService,
+    private val votesService: GradesService,
     private val studentsService: StudentsService,
     private val student: Student,
     private val vote: Grade
@@ -41,13 +43,6 @@ class GradesServiceTest @Autowired constructor(
         val updatedStudent = studentsService.findStudentById(vote.studentID)
 
         assertThat(updatedStudent).isNotNull
-
-        val addedVote = updatedStudent?.votes?.first {
-            it.studentID == updatedStudent.id
-        }
-
-        assertThat(addedVote).isNotNull
-        assertThat(addedVote).isEqualTo(vote)
 
         studentsService.removeStudentById(student.id)
         votesService.removeVoteById(vote.id)

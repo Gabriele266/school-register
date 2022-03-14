@@ -1,4 +1,4 @@
-package com.school.schoolregister.controllers
+package com.school.schoolregister.controllers.test
 
 import com.school.schoolregister.domain.Student
 import com.school.schoolregister.domain.studentIsValid

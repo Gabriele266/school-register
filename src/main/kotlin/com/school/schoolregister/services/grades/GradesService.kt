@@ -1,10 +1,10 @@
-package com.school.schoolregister.services.votes
+package com.school.schoolregister.services.grades
 
 import com.school.schoolregister.domain.Grade
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
 
-interface VotesService {
+interface GradesService {
     fun saveVote(vote: Grade): Grade
     fun updateVote(vote: Grade): UpdateResult<Grade>
     fun removeVoteById(voteId: String): RemoveResult<Grade>

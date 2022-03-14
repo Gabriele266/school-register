@@ -38,6 +38,9 @@ class StudentsServiceImpl(
     override fun hasStudentWithId(id: String): Boolean =
         studentsRepository.findById(ObjectId(id)).isPresent
 
+    override fun findFirst(): Student? =
+        studentsRepository.findAll()[0]
+
     override fun updateStudent(student: Student): UpdateResult<Student> {
         if (!hasStudentWithId(student.id)) return UpdateResult.failed()
 

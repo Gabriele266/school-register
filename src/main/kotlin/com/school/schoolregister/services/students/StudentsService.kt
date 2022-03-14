@@ -11,4 +11,5 @@ interface StudentsService {
     fun findStudentsCount(): Long
     fun updateStudent(student: Student): UpdateResult<Student>
     fun hasStudentWithId(id: String): Boolean
+    fun findFirst(): Student?
 }

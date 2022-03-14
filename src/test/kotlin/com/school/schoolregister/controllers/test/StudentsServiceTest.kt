@@ -1,5 +1,7 @@
-package com.school.schoolregister.controllers
+package com.school.schoolregister.controllers.test
 
+import com.school.schoolregister.controllers.generateRandomInt
+import com.school.schoolregister.controllers.generateRandomString
 import com.school.schoolregister.domain.Student
 import com.school.schoolregister.domain.generateRandomStudent
 import com.school.schoolregister.services.students.StudentsService
@@ -32,7 +34,7 @@ class StudentsServiceTest(
     @Test
     fun `It should correctly remove a student`() {
         // Add some students
-        val students = generateSequence(5) {
+        val students = com.school.schoolregister.controllers.generateSequence(5) {
             Student(
                 name = generateRandomString(10),
                 surname = generateRandomString(10),

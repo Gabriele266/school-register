@@ -4,7 +4,6 @@ import com.school.schoolregister.controllers.generateRandomString
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.data.mongodb.core.mapping.DocumentReference
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 
@@ -15,8 +14,6 @@ data class Student(
     val birthDate: Long = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC),
     val email: String? = null,
     val tel: String? = null,
-    @DocumentReference
-    var votes: MutableList<Grade> = mutableListOf()
 ) {
     @Id
     var id: String = ObjectId.get().toHexString()
@@ -27,7 +24,6 @@ data class Student(
         input.birthDate,
         input.email,
         input.tel,
-        input.votes
     )
 }
 
