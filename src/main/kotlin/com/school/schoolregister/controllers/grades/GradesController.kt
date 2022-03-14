@@ -1,6 +1,6 @@
 package com.school.schoolregister.controllers.grades
 
-import com.school.schoolregister.domain.Grade
+import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.exceptions.InvalidStudentReferenceException
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult

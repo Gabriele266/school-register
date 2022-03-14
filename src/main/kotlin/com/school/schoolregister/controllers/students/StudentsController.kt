@@ -1,9 +1,9 @@
 package com.school.schoolregister.controllers.students
 
-import com.school.schoolregister.domain.Student
-import com.school.schoolregister.domain.studentIsValid
-import com.school.schoolregister.services.students.StudentsService
+import com.school.schoolregister.domain.entities.Student
+import com.school.schoolregister.domain.utils.studentIsValid
 import com.school.schoolregister.services.common.UpdateResult
+import com.school.schoolregister.services.students.StudentsService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

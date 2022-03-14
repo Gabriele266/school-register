@@ -1,9 +1,9 @@
-package com.school.schoolregister.controllers.test
+package com.school.schoolregister.controllers.test.services
 
 import com.school.schoolregister.controllers.generateRandomInt
 import com.school.schoolregister.controllers.generateRandomString
-import com.school.schoolregister.domain.Student
-import com.school.schoolregister.domain.generateRandomStudent
+import com.school.schoolregister.domain.entities.Student
+import com.school.schoolregister.domain.utils.generateRandomStudent
 import com.school.schoolregister.services.students.StudentsService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

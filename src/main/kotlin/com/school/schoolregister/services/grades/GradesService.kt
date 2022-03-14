@@ -1,6 +1,6 @@
 package com.school.schoolregister.services.grades
 
-import com.school.schoolregister.domain.Grade
+import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
 

@@ -1,4 +1,4 @@
-package com.school.schoolregister.domain
+package com.school.schoolregister.domain.inputs
 
 import java.time.LocalDateTime
 import java.time.ZoneOffset

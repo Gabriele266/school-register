@@ -1,6 +1,6 @@
-package com.school.schoolregister.domain
+package com.school.schoolregister.domain.entities
 
-import com.school.schoolregister.controllers.generateRandomString
+import com.school.schoolregister.domain.inputs.StudentInput
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -26,14 +26,3 @@ data class Student(
         input.tel,
     )
 }
-
-fun generateRandomStudent(): Student =
-    Student(
-        generateRandomString(),
-        generateRandomString(),
-        LocalDateTime.now().toEpochSecond(ZoneOffset.UTC),
-    )
-
-fun studentIsValid(student: Student): Boolean =
-    student.name.matches("^[a-zA-Z ]*$".toRegex())
-            && student.surname.matches("^[a-zA-Z ]*$".toRegex())

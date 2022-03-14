@@ -1,6 +1,6 @@
 package com.school.schoolregister.services.students
 
-import com.school.schoolregister.domain.Student
+import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.repositories.StudentsRepository
 import com.school.schoolregister.services.common.UpdateResult
 import org.bson.types.ObjectId

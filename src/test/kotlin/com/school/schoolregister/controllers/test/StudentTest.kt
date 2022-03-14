@@ -1,7 +1,7 @@
 package com.school.schoolregister.controllers.test
 
-import com.school.schoolregister.domain.Student
-import com.school.schoolregister.domain.studentIsValid
+import com.school.schoolregister.domain.entities.Student
+import com.school.schoolregister.domain.utils.studentIsValid
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
