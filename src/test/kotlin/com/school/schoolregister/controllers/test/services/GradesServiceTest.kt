@@ -37,7 +37,7 @@ class GradesServiceTest @Autowired constructor(
         studentsService.saveStudent(student)
 
         val beforeCount = votesService.count()
-        assertThat(votesService.saveVote(vote)).isEqualTo(vote)
+        assertThat(votesService.saveGrade(vote)).isEqualTo(vote)
         assertThat(beforeCount).isLessThan(votesService.count())
 
         val updatedStudent = studentsService.findStudentById(vote.studentID)
@@ -45,7 +45,7 @@ class GradesServiceTest @Autowired constructor(
         assertThat(updatedStudent).isNotNull
 
         studentsService.removeStudentById(student.id)
-        votesService.removeVoteById(vote.id)
+        votesService.removeGradeByID(vote.id)
     }
 
     @Test
@@ -60,9 +60,9 @@ class GradesServiceTest @Autowired constructor(
         )
 
         studentsService.saveStudent(student)
-        votesService.saveVote(vote)
+        votesService.saveGrade(vote)
 
-        val foundVote = votesService.findVoteById(vote.id)
+        val foundVote = votesService.findGradeByID(vote.id)
         assertThat(foundVote).isNotNull
         assertThat(foundVote).isEqualTo(vote)
 
@@ -75,6 +75,6 @@ class GradesServiceTest @Autowired constructor(
 
         // Remove garbage stuff
         studentsService.removeStudentById(student.id)
-        votesService.removeVoteById(vote.id)
+        votesService.removeGradeByID(vote.id)
     }
 }

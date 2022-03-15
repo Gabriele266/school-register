@@ -28,4 +28,7 @@ class StudentsDataFetcher(
 
     @DgsMutation(field = "add_student")
     fun addStudent(@InputArgument input: StudentInput): Student = studentsService.saveStudent(Student(input))
+
+    @DgsMutation(field = "remove_student")
+    fun removeStudent(@InputArgument id: String): Student? = studentsService.removeStudentById(id)
 }

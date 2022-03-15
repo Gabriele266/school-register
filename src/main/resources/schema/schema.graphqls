@@ -8,7 +8,14 @@ type Teacher {
     subject: String!
 }
 
-type Vote {
+type GradeRemoveResult {
+    removeCount: Int!
+    successful: Boolean!
+    removed: Grade
+    errors: String
+}
+
+type Grade {
     id: String!
     studentID: String!
     teacherID: String!
@@ -25,7 +32,7 @@ input StudentInput {
     tel: String
 }
 
-input VoteInput {
+input GradeInput {
     studentID: String!
     teacherID: String!
     value: Float!
@@ -57,14 +64,19 @@ type Query {
 
     teachers(name: String, surname: String): [Teacher!]!
     teacher(id: String!): Teacher
+
+    grades(studentID: String!): [Grade!]!
+    grade(id: String!): Grade
 }
 
 type Mutation {
     add_student(input: StudentInput!): Student!
-    add_vote(in: VoteInput!): Vote!
+    add_grade(in: GradeInput!): Grade!
     add_teacher(in: TeacherInput!): Teacher!
 
+    update_grade(grade: GradeInput!): Grade
+
     remove_student(id: String!): Student
-    remove_vote(id: String!): Vote
+    remove_grade(id: String!): GradeRemoveResult
     remove_teacher(id: String!): Teacher
 }

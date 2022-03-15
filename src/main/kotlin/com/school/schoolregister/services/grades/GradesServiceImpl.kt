@@ -7,57 +7,72 @@ import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
 import com.school.schoolregister.services.students.StudentsService
 import org.bson.types.ObjectId
+import org.springframework.data.mongodb.core.MongoTemplate
+import org.springframework.data.mongodb.core.query.Criteria
+import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Service
 
 @Service
 class GradesServiceImpl(
     private val votesRepository: VotesRepository,
     private val studentsService: StudentsService,
+    private val mongoTemplate: MongoTemplate
 ) : GradesService {
 
     @Throws(InvalidStudentReferenceException::class)
-    override fun saveVote(vote: Grade): Grade {
-        val studentID = vote.studentID
+    override fun saveGrade(grade: Grade): Grade {
+        val studentID = grade.studentID
 
         // Check if student reference is valid or throw exception
         studentsService.findStudentById(studentID) ?: throw InvalidStudentReferenceException(studentID, null)
 
-        votesRepository.save(vote)
+        votesRepository.save(grade)
 
-        return vote
+        return grade
     }
 
-    override fun count(): Long =
-        votesRepository.count()
+    override fun count(): Long = votesRepository.count()
 
-    override fun updateVote(vote: Grade): UpdateResult<Grade> {
-        val voteID = ObjectId(vote.id)
+    override fun updateGrade(grade: Grade): UpdateResult<Grade> {
+        val voteID = ObjectId(grade.id)
 
         val voteOriginal = votesRepository.findById(voteID).orElse(null)
 
         return if (voteOriginal != null) {
             votesRepository.deleteById(voteID)
-            votesRepository.save(vote)
-            UpdateResult.successful(vote)
+            votesRepository.save(grade)
+            UpdateResult.successful(grade)
         } else UpdateResult.failed()
     }
 
-    override fun removeVoteById(voteId: String): RemoveResult<Grade> {
-        val vote: Grade? = votesRepository.findById(ObjectId(voteId)).orElse(null)
+    override fun removeGradeByID(gradeID: String): RemoveResult<Grade> {
+        val vote: Grade? = votesRepository.findById(ObjectId(gradeID)).orElse(null)
         return if (vote != null) {
-            votesRepository.deleteById(ObjectId(voteId))
+            votesRepository.deleteById(ObjectId(gradeID))
 
             RemoveResult.successful(vote)
         } else RemoveResult.failed("Invalid remove id")
     }
 
-    override fun hasVoteWithId(voteId: String): Boolean =
-        votesRepository.findById(ObjectId(voteId)).isPresent
+    override fun hasGradeWithID(gradeID: String): Boolean = votesRepository.findById(ObjectId(gradeID)).isPresent
 
-    override fun findVoteById(voteId: String): Grade? =
-        votesRepository.findById(ObjectId(voteId)).orElse(null)
+    override fun findGradeByID(gradeID: String): Grade? = votesRepository.findById(ObjectId(gradeID)).orElse(null)
 
-    override fun findAll(): List<Grade> =
-        votesRepository.findAll()
+    override fun findAll(): List<Grade> = votesRepository.findAll()
 
+    override fun findByStudentID(studentID: String): Array<Grade> {
+        val query = Query()
+        query.addCriteria(Criteria.where("studentID").`is`(studentID))
+
+        val grades = mongoTemplate.find(query, Grade::class.java)
+
+        return grades.toTypedArray()
+    }
+
+    override fun findByTeacherID(teacherID: String): Array<Grade> {
+        val query = Query()
+
+        query.addCriteria(Criteria.where("teacherID").`is`(teacherID))
+        return mongoTemplate.find(query, Grade::class.java).toTypedArray()
+    }
 }

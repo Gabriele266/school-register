@@ -41,12 +41,12 @@ class StudentsServiceTest(
             )
         }.toList()
 
-        val before = studentsService.findStudentsCount()
+        val before = studentsService.count()
 
         for (a in students)
             studentsService.saveStudent(a)
 
-        assertThat(before).isLessThan(studentsService.findStudentsCount())
+        assertThat(before).isLessThan(studentsService.count())
 
         // Chose one to remove
         val removeStudent = students[generateRandomInt(0, students.size)]

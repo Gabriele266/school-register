@@ -23,7 +23,7 @@ class GradesController(
     fun addVote(@RequestBody grade: Grade): ResponseEntity<Any> =
         try {
             ResponseEntity.ok(
-                gradesService.saveVote(grade)
+                gradesService.saveGrade(grade)
             )
         } catch (e: InvalidStudentReferenceException) {
             ResponseEntity.badRequest().body(e)
@@ -31,7 +31,7 @@ class GradesController(
 
     @DeleteMapping("/{id}")
     fun removeVoteById(@PathVariable id: String): ResponseEntity<RemoveResult<Grade>> {
-        val res = gradesService.removeVoteById(id)
+        val res = gradesService.removeGradeByID(id)
 
         return if (res.successful) ResponseEntity.ok(res)
         else return ResponseEntity.badRequest().body(res)
@@ -39,7 +39,7 @@ class GradesController(
 
     @PutMapping
     fun updateVote(@RequestBody grade: Grade): ResponseEntity<UpdateResult<Grade>> {
-        val res = gradesService.updateVote(grade)
+        val res = gradesService.updateGrade(grade)
 
         return if (res.successful) ResponseEntity.ok(res)
         else ResponseEntity.badRequest().body(res)

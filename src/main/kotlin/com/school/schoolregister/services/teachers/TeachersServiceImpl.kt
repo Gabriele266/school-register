@@ -46,7 +46,7 @@ class TeachersServiceImpl(
 
     }
 
-    override fun findTeacherCount(): Long =
+    override fun count(): Long =
         teacherRepository.count()
 
     override fun updateTeacher(teacher: Teacher): UpdateResult<Teacher> {

@@ -32,7 +32,7 @@ class StudentsServiceImpl(
     override fun findStudents(): List<Student> =
         studentsRepository.findAll()
 
-    override fun findStudentsCount(): Long =
+    override fun count(): Long =
         studentsRepository.count()
 
     /**
