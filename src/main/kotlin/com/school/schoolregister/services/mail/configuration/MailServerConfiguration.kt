@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.mail.javamail.JavaMailSenderImpl
 
 @Configuration
-open class MailServerConfiguration {
+private open class MailServerConfiguration {
     @Bean
     open fun mailSender(): JavaMailSenderImpl {
         val sender = JavaMailSenderImpl()
@@ -19,10 +19,10 @@ open class MailServerConfiguration {
 
         var props = sender.javaMailProperties
         props.apply {
-            put("mail.transport.protocol", "smtp");
-            put("mail.smtp.auth", "true");
-            put("mail.smtp.starttls.enable", "true");
-            put("mail.debug", "true");
+            put("mail.transport.protocol", "smtp")
+            put("mail.smtp.auth", "true")
+            put("mail.smtp.starttls.enable", "true")
+            put("mail.debug", "true")
         }
 
         return sender

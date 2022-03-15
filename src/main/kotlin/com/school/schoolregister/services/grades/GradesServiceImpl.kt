@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Service
 
 @Service
-class GradesServiceImpl(
+private class GradesServiceImpl(
     private val votesRepository: VotesRepository,
     private val studentsService: StudentsService,
     private val mongoTemplate: MongoTemplate

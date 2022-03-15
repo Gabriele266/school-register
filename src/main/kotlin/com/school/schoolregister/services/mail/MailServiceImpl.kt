@@ -16,7 +16,7 @@ import java.util.*
 @Service
 @EnableAsync
 @EnableScheduling
-class MailServiceImpl(
+private class MailServiceImpl(
     private val mailSender: JavaMailSender
 ) : MailService {
     private var queue: Queue<MailTemplate> = LinkedList()

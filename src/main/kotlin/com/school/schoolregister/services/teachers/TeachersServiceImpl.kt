@@ -6,12 +6,16 @@ import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
 import com.school.schoolregister.services.mail.MailService
 import org.bson.types.ObjectId
+import org.springframework.data.mongodb.core.MongoTemplate
+import org.springframework.data.mongodb.core.query.Criteria
+import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Service
 
 @Service
 class TeachersServiceImpl(
     private val teacherRepository: TeacherRepository,
-    private val mailService: MailService
+    private val mailService: MailService,
+    private val mongoTemplate: MongoTemplate
 ) : TeachersService {
     override fun saveTeacher(teacher: Teacher): Teacher {
         mailService.scheduleMail(
@@ -63,4 +67,23 @@ class TeachersServiceImpl(
     override fun hasTeacherWithId(id: String): Boolean =
         findTeacherById(id) != null
 
+    override fun findTeachersWithName(name: String): List<Teacher> {
+        val query = Query()
+
+        query.addCriteria(Criteria.where("name").`is`(name))
+
+        return mongoTemplate.find(query, Teacher::class.java)
+    }
+
+    override fun findTeachersWithSurname(surname: String): List<Teacher> {
+        val query = Query().addCriteria(Criteria.where("surname").`is`(surname))
+
+        return mongoTemplate.find(query, Teacher::class.java)
+    }
+
+    override fun findTeachersOfSubject(subject: String): List<Teacher> {
+        val query = Query().addCriteria(Criteria.where("subject").regex("^$subject"))
+
+        return mongoTemplate.find(query, Teacher::class.java)
+    }
 }

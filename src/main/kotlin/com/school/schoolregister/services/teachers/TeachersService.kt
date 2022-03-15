@@ -49,4 +49,21 @@ interface TeachersService {
      * Check if there is a teacher with the given id
      */
     fun hasTeacherWithId(id: String): Boolean
+
+    /**
+     * Find all the teachers with the given name
+     */
+    fun findTeachersWithName(name: String): List<Teacher>
+
+    /**
+     * Find all the teachers with the given surname
+     */
+    fun findTeachersWithSurname(surname: String): List<Teacher>
+
+    /**
+     * Find all the teachers of a specific subject
+     *
+     * The subject is compared using regex (start with)
+     */
+    fun findTeachersOfSubject(subject: String): List<Teacher>
 }

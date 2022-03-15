@@ -62,7 +62,7 @@ type Query {
     students(name: String, surname: String): [Student!]!
     student(id: String!): Student
 
-    teachers(name: String, surname: String): [Teacher!]!
+    teachers(name: String, surname: String, subject: String): [Teacher!]!
     teacher(id: String!): Teacher
 
     grades(studentID: String!): [Grade!]!
@@ -72,9 +72,10 @@ type Query {
 type Mutation {
     add_student(input: StudentInput!): Student!
     add_grade(in: GradeInput!): Grade!
-    add_teacher(in: TeacherInput!): Teacher!
+    add_teacher(input: TeacherInput!): Teacher!
 
     update_grade(grade: GradeInput!): Grade
+    update_teacher(teacher: TeacherInput!): Teacher
 
     remove_student(id: String!): Student
     remove_grade(id: String!): GradeRemoveResult
