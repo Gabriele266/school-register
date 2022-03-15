@@ -1,6 +1,9 @@
 package com.school.schoolregister.services.mail
 
+import com.school.schoolregister.SchoolRegisterApplication
 import com.school.schoolregister.services.mail.templates.MailTemplate
+import com.school.schoolregister.services.mail.validation.mailIsValid
+import org.slf4j.LoggerFactory
 import org.springframework.mail.MailException
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.MimeMessageHelper
@@ -19,7 +22,12 @@ class MailService(
     private var queue: Queue<MailTemplate> = LinkedList()
 
     /**
-     * Schedules a new email to send
+     * Schedules a new email to send. Every email is send every 5 seconds and stored into a blocking
+     * queue.
+     *
+     * @param receiver The receiver for this mail
+     * @param subject The subject of the mail to send
+     * @param body An optional body for the email (html document)
      */
     fun scheduleMail(receiver: String, subject: String, body: String?) {
         queue.add(MailTemplate(objectHtml = subject, bodyHtml = body ?: "", receiver = receiver))
@@ -33,7 +41,20 @@ class MailService(
             performMail(head)
     }
 
+    /**
+     * Sends an email starting from its template and returns true if the operation is successull
+     *
+     * @param template Template to use for sending emails
+     * @throws This method does not throw nothing
+     */
     private fun performMail(template: MailTemplate): Boolean {
+        val logger = LoggerFactory.getLogger(SchoolRegisterApplication::class.java)
+
+        if (!mailIsValid(template.receiver)) {
+            logger.error("Unable to send mail to ${template.receiver}")
+            return false
+        }
+
         return try {
             val mail = mailSender.createMimeMessage()
             val messageHelper = MimeMessageHelper(mail, true)
@@ -42,10 +63,10 @@ class MailService(
             messageHelper.setText(template.bodyHtml, true)
             mailSender.send(mail)
 
+            logger.info("Successfully sent mail to ${template.receiver}")
             true
         } catch (e: MailException) {
-            e.printStackTrace()
-            println(template)
+            logger.error("Unable to send mail to ${template.receiver}. Reason is: $e")
             false
         }
     }

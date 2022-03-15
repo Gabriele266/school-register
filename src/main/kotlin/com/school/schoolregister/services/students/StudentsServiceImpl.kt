@@ -3,15 +3,28 @@ package com.school.schoolregister.services.students
 import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.repositories.StudentsRepository
 import com.school.schoolregister.services.common.UpdateResult
+import com.school.schoolregister.services.mail.MailService
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
 
 @Service
 class StudentsServiceImpl(
-    private val studentsRepository: StudentsRepository
+    private val studentsRepository: StudentsRepository,
+    private val mailService: MailService
 ) : StudentsService {
-    override fun saveStudent(input: Student): Student =
-        studentsRepository.save(input)
+    override fun saveStudent(input: Student): Student {
+        // Schedule an email to welcome
+        if (input.email != null)
+            mailService.scheduleMail(
+                input.email, "Welcome in this school",
+                """Welcome ${input.name}, we are glad to have you here!!!
+                    
+                    This is a learning project, not a production one!
+                """.trimIndent()
+            )
+
+        return studentsRepository.save(input)
+    }
 
     override fun findStudentById(id: String): Student? =
         studentsRepository.findById(ObjectId(id)).orElse(null)
@@ -32,6 +45,12 @@ class StudentsServiceImpl(
         if (student != null)
             studentsRepository.deleteById(ObjectId(id))
 
+        if (student.email != null)
+            mailService.scheduleMail(
+                student.email, "Good bye!", """
+                It has been a pleasure to have you here. Goodbye and see you later.
+            """.trimIndent()
+            )
         return student
     }
 
