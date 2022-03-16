@@ -54,8 +54,8 @@ private class StudentsServiceImpl(
         return student
     }
 
-    override fun hasStudentWithId(id: String): Boolean =
-        studentsRepository.findById(ObjectId(id)).isPresent
+    override fun hasStudentWithId(id: String): Boolean = ObjectId.isValid(id) &&
+            studentsRepository.findById(ObjectId(id)).isPresent
 
     override fun findFirst(): Student? =
         studentsRepository.findAll()[0]
