@@ -24,7 +24,11 @@ private class GradesServiceImpl(
         val studentID = grade.studentID
 
         // Check if student reference is valid or throw exception
-        studentsService.findStudentById(studentID) ?: throw InvalidStudentReferenceException(studentID, null)
+        studentsService.findStudentById(studentID) ?: throw InvalidStudentReferenceException(
+            studentID,
+            "GradeService",
+            null
+        )
 
         votesRepository.save(grade)
 

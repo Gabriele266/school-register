@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document
 open class WithID(
     @Id
-    val id: String = ObjectId.get().toHexString()
+    var id: String = ObjectId.get().toHexString()
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
