@@ -14,6 +14,11 @@ interface GradeService {
     fun saveGrade(grade: Grade): Grade
 
     /**
+     * Saves a list of grades into the persistence support
+     */
+    fun saveGrades(gradesList: List<Grade>): List<Grade>
+
+    /**
      * Updates a grade starting from its id. The first grade
      * that will match with the given one will be updated
      * @param grade The grade to update
