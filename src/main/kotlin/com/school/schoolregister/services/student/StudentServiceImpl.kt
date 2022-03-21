@@ -8,7 +8,7 @@ import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
 
 @Service
-private class StudentsServiceImpl(
+private class StudentServiceImpl(
     private val studentsRepository: StudentRepository,
     private val mailService: MailService
 ) : StudentService {
