@@ -10,7 +10,7 @@ import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class GradesControllerTest {
+class GradeControllerTest {
 
     @LocalServerPort
     private var port: Int = 0

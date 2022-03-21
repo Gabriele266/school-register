@@ -13,19 +13,19 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 
 @SpringBootTest
-class StudentsServiceTest(
+class StudentServiceTest(
     @Autowired
-    private val studentsService: StudentService
+    private val studentService: StudentService
 ) {
     @Test
     fun `It should correctly add a new student`() {
-        val allStudentsBefore = studentsService.findStudents().size
+        val allStudentsBefore = studentService.findStudents().size
 
         val addStudent = Student(name = "TestS", surname = "TestSur", LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))
-        assertThat(studentsService.saveStudent(addStudent)).isEqualTo(addStudent)
-        val allStudentsAfter = studentsService.findStudents().size
+        assertThat(studentService.saveStudent(addStudent)).isEqualTo(addStudent)
+        val allStudentsAfter = studentService.findStudents().size
 
-        val allStudents = studentsService.findStudents()
+        val allStudents = studentService.findStudents()
         assertThat(allStudentsAfter).isGreaterThan(allStudentsBefore)
         assertThat(allStudents).isNotEmpty
         assertThat(allStudents).contains(addStudent)
@@ -41,18 +41,18 @@ class StudentsServiceTest(
             )
         }.toList()
 
-        val before = studentsService.count()
+        val before = studentService.count()
 
         for (a in students)
-            studentsService.saveStudent(a)
+            studentService.saveStudent(a)
 
-        assertThat(before).isLessThan(studentsService.count())
+        assertThat(before).isLessThan(studentService.count())
 
         // Chose one to remove
         val removeStudent = students[generateRandomInt(0, students.size)]
 
         // Remove assertions
-        assertThat(studentsService.removeStudentById(removeStudent.id)).isEqualTo(removeStudent)
+        assertThat(studentService.removeStudentById(removeStudent.id)).isEqualTo(removeStudent)
     }
 
     @Test
@@ -60,26 +60,26 @@ class StudentsServiceTest(
         val student = generateRandomStudent()
         val studentId = student.id
 
-        assertThat(studentsService.saveStudent(student)).isEqualTo(student)
-        assertThat(studentsService.findStudentById(studentId)).isEqualTo(student)
+        assertThat(studentService.saveStudent(student)).isEqualTo(student)
+        assertThat(studentService.findStudentById(studentId)).isEqualTo(student)
 
-        assertThat(studentsService.removeStudentById(studentId)).isEqualTo(student)
+        assertThat(studentService.removeStudentById(studentId)).isEqualTo(student)
     }
 
     @Test
     fun `It should correctly update this student`() {
         val student = generateRandomStudent()
 
-        assertThat(studentsService.saveStudent(student)).isEqualTo(student)
+        assertThat(studentService.saveStudent(student)).isEqualTo(student)
         val update = Student(name = "Update", surname = "Test").apply {
             id = student.id
         }
 
-        val updateResult = studentsService.updateStudent(update)
+        val updateResult = studentService.updateStudent(update)
         assertThat(updateResult.updatedCount).isEqualTo(1)
         assertThat(updateResult.updatedEntity).isEqualTo(update)
         assertThat(updateResult.successful).isEqualTo(true)
 
-        assertThat(studentsService.removeStudentById(student.id)).isEqualTo(update)
+        assertThat(studentService.removeStudentById(student.id)).isEqualTo(update)
     }
 }

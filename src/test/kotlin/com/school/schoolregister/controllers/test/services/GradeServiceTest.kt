@@ -16,42 +16,42 @@ import org.springframework.context.annotation.Import
 
 @SpringBootTest
 @Import(TestEntitiesConfiguration::class)
-class GradesServiceTest @Autowired constructor(
-    private val votesService: GradeService,
-    private val studentsService: StudentService,
+class GradeServiceTest @Autowired constructor(
+    private val gradeService: GradeService,
+    private val studentService: StudentService,
     private val student: Student,
-    private val vote: Grade
+    private val grade: Grade
 ) {
 
     @Test
     fun `It should correctly return all votes`() {
-        val votes = votesService.findAll()
+        val grades = gradeService.findAll()
 
-        assertThat(votes).isNotNull
+        assertThat(grades).isNotNull
     }
 
     @Test
     fun `It should correctly add a new vote to a student`() {
-        vote.studentID = student.id
+        grade.studentID = student.id
 
-        studentsService.saveStudent(student)
+        studentService.saveStudent(student)
 
-        val beforeCount = votesService.count()
-        assertThat(votesService.saveGrade(vote)).isEqualTo(vote)
-        assertThat(beforeCount).isLessThan(votesService.count())
+        val beforeCount = gradeService.count()
+        assertThat(gradeService.saveGrade(grade)).isEqualTo(grade)
+        assertThat(beforeCount).isLessThan(gradeService.count())
 
-        val updatedStudent = studentsService.findStudentById(vote.studentID)
+        val updatedStudent = studentService.findStudentById(grade.studentID)
 
         assertThat(updatedStudent).isNotNull
 
-        studentsService.removeStudentById(student.id)
-        votesService.removeGradeByID(vote.id)
+        studentService.removeStudentById(student.id)
+        gradeService.removeGradeByID(grade.id)
     }
 
     @Test
     fun `It should correctly return the details of this vote`() {
         val student = generateRandomStudent()
-        val vote = Grade(
+        val grade = Grade(
             student.id,
             value = 4F,
             dateTime = currentDateTimeMillis(),
@@ -59,22 +59,22 @@ class GradesServiceTest @Autowired constructor(
             description = generateRandomString()
         )
 
-        studentsService.saveStudent(student)
-        votesService.saveGrade(vote)
+        studentService.saveStudent(student)
+        gradeService.saveGrade(grade)
 
-        val foundVote = votesService.findGradeByID(vote.id)
+        val foundVote = gradeService.findGradeByID(grade.id)
         assertThat(foundVote).isNotNull
-        assertThat(foundVote).isEqualTo(vote)
+        assertThat(foundVote).isEqualTo(grade)
 
         if (foundVote != null) {
-            val linkedStudent = studentsService.findStudentById(foundVote.studentID)
+            val linkedStudent = studentService.findStudentById(foundVote.studentID)
             assertThat(linkedStudent).isNotNull
             assertThat(linkedStudent?.name).isEqualTo(student.name)
             assertThat(linkedStudent?.surname).isEqualTo(student.surname)
         }
 
         // Remove garbage stuff
-        studentsService.removeStudentById(student.id)
-        votesService.removeGradeByID(vote.id)
+        studentService.removeStudentById(student.id)
+        gradeService.removeGradeByID(grade.id)
     }
 }
