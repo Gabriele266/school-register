@@ -1,0 +1,27 @@
+type Student {
+    id: String!
+    name: String!
+    surname: String!
+    birthDate: Int!
+    email: String
+    tel: String
+}
+
+input StudentInput {
+    name: String!
+    surname: String!
+    birthDate: Int!
+    email: String
+    tel: String
+}
+
+extend type Query {
+    students(name: String, surname: String): [Student!]!
+    student(id: String!): Student
+}
+
+extend type Mutation {
+    add_student(input: StudentInput!): Student!
+
+    remove_student(id: String!): Student
+}

@@ -1,0 +1,34 @@
+type GradeRemoveResult {
+    removeCount: Int!
+    successful: Boolean!
+    removed: Grade
+    errors: String
+}
+
+type Grade {
+    id: String!
+    studentID: String!
+    teacherID: String!
+    value: Float!
+    dateTime: Int!
+    description: String
+}
+
+input GradeInput {
+    studentID: String!
+    teacherID: String!
+    value: Float!
+    dateTime: Int!
+    description: String
+}
+
+type Query {
+    grades(studentID: String!): [Grade!]!
+    grade(id: String!): Grade
+}
+
+type Mutation {
+    add_grade(in: GradeInput!): Grade!
+    update_grade(grade: GradeInput!): Grade
+    remove_grade(id: String!): GradeRemoveResult
+}

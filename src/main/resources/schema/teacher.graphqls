@@ -1,0 +1,30 @@
+type Teacher {
+    id: String!
+    name: String!
+    surname: String!
+    email: String
+    tel: String
+    address: String
+    subject: String!
+}
+
+
+input TeacherInput {
+    name: String!
+    surname: String!
+    email: String
+    tel: String
+    address: String
+    subject: String!
+}
+
+extend type Query {
+    teachers(name: String, surname: String, subject: String): [Teacher!]!
+    teacher(id: String!): Teacher
+}
+
+extend type Mutation {
+    add_teacher(input: TeacherInput!): Teacher!
+    update_teacher(teacher: TeacherInput!): Teacher
+    remove_teacher(id: String!): Teacher
+}
