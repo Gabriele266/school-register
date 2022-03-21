@@ -1,17 +1,17 @@
-package com.school.schoolregister.controllers.grades
+package com.school.schoolregister.controllers.grade
 
 import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.exceptions.InvalidStudentReferenceException
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
-import com.school.schoolregister.services.grades.GradesService
+import com.school.schoolregister.services.grade.GradeService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/grades")
-class GradesController(
-    private val gradesService: GradesService
+class GradeController(
+    private val gradesService: GradeService
 ) {
     @GetMapping
     fun getVotes(): ResponseEntity<List<Grade>> =

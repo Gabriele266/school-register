@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.teachers
+package com.school.schoolregister.services.teacher
 
 import com.school.schoolregister.domain.entities.Teacher
 import com.school.schoolregister.repositories.TeacherRepository
@@ -12,11 +12,11 @@ import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Service
 
 @Service
-class TeachersServiceImpl(
+class TeacherServiceImpl(
     private val teacherRepository: TeacherRepository,
     private val mailService: MailService,
     private val mongoTemplate: MongoTemplate
-) : TeachersService {
+) : TeacherService {
     override fun saveTeacher(teacher: Teacher): Teacher {
         mailService.scheduleMail(
             teacher.email,

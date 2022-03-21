@@ -2,10 +2,10 @@ package com.school.schoolregister.services.presence
 
 import com.school.schoolregister.domain.entities.Presence
 import com.school.schoolregister.exceptions.InvalidStudentReferenceException
-import com.school.schoolregister.repositories.PresencesRepository
+import com.school.schoolregister.repositories.PresenceRepository
 import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.students.StudentsService
-import com.school.schoolregister.services.teachers.TeachersService
+import com.school.schoolregister.services.student.StudentService
+import com.school.schoolregister.services.teacher.TeacherService
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service
 
 @Service
 private class PresenceServiceImpl(
-    private val presencesRepository: PresencesRepository,
-    private val studentsService: StudentsService,
-    private val teachersService: TeachersService,
+    private val presencesRepository: PresenceRepository,
+    private val studentsService: StudentService,
+    private val teachersService: TeacherService,
     private val mongoTemplate: MongoTemplate
 ) : PresenceService {
     override fun findAll(): List<Presence> =

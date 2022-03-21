@@ -1,7 +1,7 @@
-package com.school.schoolregister.services.students
+package com.school.schoolregister.services.student
 
 import com.school.schoolregister.domain.entities.Student
-import com.school.schoolregister.repositories.StudentsRepository
+import com.school.schoolregister.repositories.StudentRepository
 import com.school.schoolregister.services.common.UpdateResult
 import com.school.schoolregister.services.mail.MailService
 import org.bson.types.ObjectId
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service
 
 @Service
 private class StudentsServiceImpl(
-    private val studentsRepository: StudentsRepository,
+    private val studentsRepository: StudentRepository,
     private val mailService: MailService
-) : StudentsService {
+) : StudentService {
     override fun saveStudent(input: Student): Student {
         // Schedule an email to welcome
         if (input.email != null)

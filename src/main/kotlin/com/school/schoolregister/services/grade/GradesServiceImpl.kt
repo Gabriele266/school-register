@@ -1,11 +1,11 @@
-package com.school.schoolregister.services.grades
+package com.school.schoolregister.services.grade
 
 import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.exceptions.InvalidStudentReferenceException
-import com.school.schoolregister.repositories.VotesRepository
+import com.school.schoolregister.repositories.GradeRepository
 import com.school.schoolregister.services.common.RemoveResult
 import com.school.schoolregister.services.common.UpdateResult
-import com.school.schoolregister.services.students.StudentsService
+import com.school.schoolregister.services.student.StudentService
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service
 
 @Service
 private class GradesServiceImpl(
-    private val votesRepository: VotesRepository,
-    private val studentsService: StudentsService,
+    private val votesRepository: GradeRepository,
+    private val studentsService: StudentService,
     private val mongoTemplate: MongoTemplate
-) : GradesService {
+) : GradeService {
 
     @Throws(InvalidStudentReferenceException::class)
     override fun saveGrade(grade: Grade): Grade {

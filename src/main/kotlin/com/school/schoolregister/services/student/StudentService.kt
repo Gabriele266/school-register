@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.students
+package com.school.schoolregister.services.student
 
 import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.services.common.UpdateResult
@@ -6,7 +6,7 @@ import com.school.schoolregister.services.common.UpdateResult
 /**
  * Service to manage all the students
  */
-interface StudentsService {
+interface StudentService {
     /**
      * Save a new student. Sends an email to welcome the new student
      *

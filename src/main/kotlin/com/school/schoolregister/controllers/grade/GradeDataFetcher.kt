@@ -1,4 +1,4 @@
-package com.school.schoolregister.controllers.grades
+package com.school.schoolregister.controllers.grade
 
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsMutation
@@ -8,11 +8,11 @@ import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.domain.entities.inputGrade
 import com.school.schoolregister.domain.inputs.GradeInput
 import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.grades.GradesService
+import com.school.schoolregister.services.grade.GradeService
 
 @DgsComponent
-class GradesDataFetcher(
-    private val gradesService: GradesService
+class GradeDataFetcher(
+    private val gradesService: GradeService
 ) {
     @DgsQuery
     fun grades(@InputArgument studentID: String): Array<Grade> = gradesService.findByStudentID(studentID)

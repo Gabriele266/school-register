@@ -1,16 +1,16 @@
-package com.school.schoolregister.controllers.students
+package com.school.schoolregister.controllers.student
 
 import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.domain.utils.studentIsValid
 import com.school.schoolregister.services.common.UpdateResult
-import com.school.schoolregister.services.students.StudentsService
+import com.school.schoolregister.services.student.StudentService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/students")
-class StudentsController(
-    private val studentsService: StudentsService
+class StudentController(
+    private val studentsService: StudentService
 ) {
     @GetMapping
     fun getStudents(): List<Student> =

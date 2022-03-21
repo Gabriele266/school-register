@@ -1,4 +1,4 @@
-package com.school.schoolregister.controllers.teachers
+package com.school.schoolregister.controllers.teacher
 
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsMutation
@@ -7,11 +7,11 @@ import com.netflix.graphql.dgs.InputArgument
 import com.school.schoolregister.domain.entities.Teacher
 import com.school.schoolregister.domain.inputs.TeacherInput
 import com.school.schoolregister.domain.inputs.inputTeacher
-import com.school.schoolregister.services.teachers.TeachersService
+import com.school.schoolregister.services.teacher.TeacherService
 
 @DgsComponent
-class TeachersDataFetcher(
-    private val teachersService: TeachersService
+class TeacherDataFetcher(
+    private val teachersService: TeacherService
 ) {
     @DgsQuery(field = "teachers")
     fun getTeachers(

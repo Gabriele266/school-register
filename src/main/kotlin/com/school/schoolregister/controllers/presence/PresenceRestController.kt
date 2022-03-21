@@ -1,4 +1,4 @@
-package com.school.schoolregister.controllers.presences
+package com.school.schoolregister.controllers.presence
 
 import com.school.schoolregister.domain.entities.Presence
 import com.school.schoolregister.services.common.RemoveResult

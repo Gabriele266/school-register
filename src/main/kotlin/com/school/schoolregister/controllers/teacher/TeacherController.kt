@@ -1,15 +1,15 @@
-package com.school.schoolregister.controllers.teachers
+package com.school.schoolregister.controllers.teacher
 
 import com.school.schoolregister.domain.entities.Teacher
 import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.teachers.TeachersService
+import com.school.schoolregister.services.teacher.TeacherService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/teachers")
-class TeachersController(
-    private val teachersService: TeachersService
+class TeacherController(
+    private val teachersService: TeacherService
 ) {
     @GetMapping
     fun getTeahers(): ResponseEntity<List<Teacher>> =

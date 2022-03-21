@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.grades
+package com.school.schoolregister.services.grade
 
 import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.services.common.RemoveResult
@@ -7,7 +7,7 @@ import com.school.schoolregister.services.common.UpdateResult
 /**
  * Service to manage all the grades
  */
-interface GradesService {
+interface GradeService {
     /**
      * Saves a new grade into the persistence support
      */

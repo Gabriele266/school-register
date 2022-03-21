@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.teachers
+package com.school.schoolregister.services.teacher
 
 import com.school.schoolregister.domain.entities.Teacher
 import com.school.schoolregister.services.common.RemoveResult
@@ -7,7 +7,7 @@ import com.school.schoolregister.services.common.UpdateResult
 /**
  * Service to manage all teachers
  */
-interface TeachersService {
+interface TeacherService {
     /**
      * Saves a new teacher
      *

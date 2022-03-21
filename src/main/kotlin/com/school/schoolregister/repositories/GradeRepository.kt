@@ -4,6 +4,6 @@ import com.school.schoolregister.domain.entities.Grade
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.repository.MongoRepository
 
-interface VotesRepository : MongoRepository<Grade, ObjectId> {
+interface GradeRepository : MongoRepository<Grade, ObjectId> {
     override fun <S : Grade?> save(entity: S): S
 }

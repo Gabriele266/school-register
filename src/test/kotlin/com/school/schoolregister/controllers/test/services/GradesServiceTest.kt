@@ -6,8 +6,8 @@ import com.school.schoolregister.controllers.generateRandomString
 import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.domain.utils.generateRandomStudent
-import com.school.schoolregister.services.grades.GradesService
-import com.school.schoolregister.services.students.StudentsService
+import com.school.schoolregister.services.grade.GradeService
+import com.school.schoolregister.services.student.StudentService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,8 +17,8 @@ import org.springframework.context.annotation.Import
 @SpringBootTest
 @Import(TestEntitiesConfiguration::class)
 class GradesServiceTest @Autowired constructor(
-    private val votesService: GradesService,
-    private val studentsService: StudentsService,
+    private val votesService: GradeService,
+    private val studentsService: StudentService,
     private val student: Student,
     private val vote: Grade
 ) {

@@ -1,4 +1,4 @@
-package com.school.schoolregister.controllers.students
+package com.school.schoolregister.controllers.student
 
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsMutation
@@ -6,11 +6,11 @@ import com.netflix.graphql.dgs.DgsQuery
 import com.netflix.graphql.dgs.InputArgument
 import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.domain.inputs.StudentInput
-import com.school.schoolregister.services.students.StudentsService
+import com.school.schoolregister.services.student.StudentService
 
 @DgsComponent
-class StudentsDataFetcher(
-    private val studentsService: StudentsService
+class StudentDataFetcher(
+    private val studentsService: StudentService
 ) {
     @DgsQuery
     fun students(@InputArgument name: String?, @InputArgument surname: String?): List<Student> {
