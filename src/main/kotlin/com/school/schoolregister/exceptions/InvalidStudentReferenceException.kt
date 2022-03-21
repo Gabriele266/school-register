@@ -1,5 +1,9 @@
 package com.school.schoolregister.exceptions
 
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.ResponseStatus
+
+@ResponseStatus(HttpStatus.BAD_REQUEST)
 class InvalidStudentReferenceException(studentID: String, serviceName: String, message: String?) :
     ServiceException(
         """
