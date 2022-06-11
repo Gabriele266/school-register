@@ -14,5 +14,4 @@ fun generateRandomStudent(): Student =
     )
 
 fun studentIsValid(student: Student): Boolean =
-    student.name.matches("^[a-zA-Z ]*$".toRegex())
-            && student.surname.matches("^[a-zA-Z ]*$".toRegex())
+    true

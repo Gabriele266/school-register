@@ -22,9 +22,9 @@ class StudentController(
         else ResponseEntity.badRequest().body("Invalid student input")
 
     @GetMapping("/{id}")
-    fun getStudentById(@PathVariable id: String): ResponseEntity<Student?> =
+    fun getStudentById(@PathVariable id: String): ResponseEntity<Any?> =
         if (studentsService.hasStudentWithId(id)) ResponseEntity.ok(studentsService.findStudentById(id))
-        else ResponseEntity.badRequest().body(null)
+        else ResponseEntity.badRequest().body("Invalid id")
 
     @DeleteMapping("/{id}")
     fun removeStudentById(@PathVariable id: String): ResponseEntity<Student?> =
