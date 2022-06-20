@@ -62,7 +62,7 @@ interface GradeService {
      * @param studentID Student id to lookup for grades
      * @return All the grades of the student or an empty array
      */
-    fun findByStudentID(studentID: String): Array<Grade>
+    fun findByStudentID(studentID: String): List<Grade>
 
     /**
      * Find all the grades added by a teacher by his id
@@ -70,5 +70,5 @@ interface GradeService {
      * @param teacherID Id of the teacher
      * @return All the votes assigned by the teacher
      */
-    fun findByTeacherID(teacherID: String): Array<Grade>
+    fun findByTeacherID(teacherID: String): List<Grade>
 }

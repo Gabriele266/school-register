@@ -10,6 +10,7 @@ type Grade {
     studentID: String!
     teacherID: String!
     value: Float!
+    subject: String!
     dateTime: Int!
     description: String
 }

@@ -17,7 +17,8 @@ open class TestEntitiesConfiguration {
             studentID = "",
             teacherID = "",
             value = 10F,
-            dateTime = currentDateTimeMillis()
+            dateTime = currentDateTimeMillis(),
+            subject = "Math"
         )
 
     @Bean(name = ["test-student"])

@@ -10,6 +10,7 @@ data class Grade(
     var studentID: String,
     var teacherID: String,
     var value: Float,
+    val subject: String,
     var dateTime: Long,
     var description: String
 ) {
@@ -18,4 +19,4 @@ data class Grade(
 }
 
 fun inputGrade(input: GradeInput): Grade =
-    Grade(input.studentID, input.teacherID, input.value, input.dateTime, input.description)
+    Grade(input.studentID, input.teacherID, input.value, input.subject, input.dateTime, input.description)

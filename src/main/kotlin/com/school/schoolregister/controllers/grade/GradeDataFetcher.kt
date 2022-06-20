@@ -15,7 +15,7 @@ class GradeDataFetcher(
     private val gradesService: GradeService
 ) {
     @DgsQuery
-    fun grades(@InputArgument studentID: String): Array<Grade> = gradesService.findByStudentID(studentID)
+    fun grades(@InputArgument studentID: String): List<Grade> = gradesService.findByStudentID(studentID)
 
     @DgsQuery
     fun grade(@InputArgument id: String): Grade? =

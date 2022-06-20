@@ -81,19 +81,19 @@ private class GradesServiceImpl(
 
     override fun findAll(): List<Grade> = gradeRepository.findAll()
 
-    override fun findByStudentID(studentID: String): Array<Grade> {
+    override fun findByStudentID(studentID: String): List<Grade> {
         val query = Query()
         query.addCriteria(Criteria.where("studentID").`is`(studentID))
 
         val grades = mongoTemplate.find(query, Grade::class.java)
 
-        return grades.toTypedArray()
+        return grades
     }
 
-    override fun findByTeacherID(teacherID: String): Array<Grade> {
+    override fun findByTeacherID(teacherID: String): List<Grade> {
         val query = Query()
 
         query.addCriteria(Criteria.where("teacherID").`is`(teacherID))
-        return mongoTemplate.find(query, Grade::class.java).toTypedArray()
+        return mongoTemplate.find(query, Grade::class.java)
     }
 }
