@@ -56,7 +56,6 @@ class GradeController(
         else return ResponseEntity.badRequest().body(res)
     }
 
-
     @Operation(summary = "Update an existing grade")
     @ApiResponses(
         value = [

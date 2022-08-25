@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.school</groupId>
     <artifactId>school-register</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.1.0-ALPHA</version>
     <name>school-register</name>
     <description>Simple school register api</description>
     <properties>
@@ -49,7 +49,17 @@
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-webflux-ui</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-kotlin</artifactId>
             <version>1.6.4</version>
         </dependency>
         <dependency>
