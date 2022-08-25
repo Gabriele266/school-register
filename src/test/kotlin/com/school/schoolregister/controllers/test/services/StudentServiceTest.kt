@@ -4,7 +4,7 @@ import com.school.schoolregister.controllers.generateRandomInt
 import com.school.schoolregister.controllers.generateRandomString
 import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.domain.utils.generateRandomStudent
-import com.school.schoolregister.services.student.StudentService
+import com.school.schoolregister.service.student.StudentService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

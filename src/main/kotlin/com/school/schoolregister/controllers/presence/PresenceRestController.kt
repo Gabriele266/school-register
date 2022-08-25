@@ -1,8 +1,8 @@
 package com.school.schoolregister.controllers.presence
 
 import com.school.schoolregister.domain.entities.Presence
-import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.presence.PresenceService
+import com.school.schoolregister.service.common.RemoveResult
+import com.school.schoolregister.service.presence.PresenceService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

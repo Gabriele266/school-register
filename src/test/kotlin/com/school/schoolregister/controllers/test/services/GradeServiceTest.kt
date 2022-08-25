@@ -6,8 +6,8 @@ import com.school.schoolregister.controllers.generateRandomString
 import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.domain.utils.generateRandomStudent
-import com.school.schoolregister.services.grade.GradeService
-import com.school.schoolregister.services.student.StudentService
+import com.school.schoolregister.service.grade.GradeService
+import com.school.schoolregister.service.student.StudentService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -56,7 +56,8 @@ class GradeServiceTest @Autowired constructor(
             value = 4F,
             dateTime = currentDateTimeMillis(),
             teacherID = "ww",
-            description = generateRandomString()
+            description = generateRandomString(),
+            subject = "Some subject"
         )
 
         studentService.saveStudent(student)

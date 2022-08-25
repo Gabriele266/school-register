@@ -6,7 +6,7 @@ import com.netflix.graphql.dgs.DgsQuery
 import com.netflix.graphql.dgs.InputArgument
 import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.domain.inputs.StudentInput
-import com.school.schoolregister.services.student.StudentService
+import com.school.schoolregister.service.student.StudentService
 
 @DgsComponent
 class StudentDataFetcher(

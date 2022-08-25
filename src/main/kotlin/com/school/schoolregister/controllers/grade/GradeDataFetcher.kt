@@ -7,8 +7,8 @@ import com.netflix.graphql.dgs.InputArgument
 import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.domain.entities.inputGrade
 import com.school.schoolregister.domain.inputs.GradeInput
-import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.grade.GradeService
+import com.school.schoolregister.service.common.RemoveResult
+import com.school.schoolregister.service.grade.GradeService
 
 @DgsComponent
 class GradeDataFetcher(

@@ -7,7 +7,7 @@ import com.netflix.graphql.dgs.InputArgument
 import com.school.schoolregister.domain.entities.Teacher
 import com.school.schoolregister.domain.inputs.TeacherInput
 import com.school.schoolregister.domain.inputs.inputTeacher
-import com.school.schoolregister.services.teacher.TeacherService
+import com.school.schoolregister.service.teacher.TeacherService
 
 @DgsComponent
 class TeacherDataFetcher(
@@ -38,7 +38,7 @@ class TeacherDataFetcher(
 
     @DgsMutation(field = "add_teacher")
     fun addTeacher(@InputArgument input: TeacherInput): Teacher =
-        teachersService.saveTeacher(inputTeacher(input))
+        teachersService.save(inputTeacher(input))
 
     @DgsMutation(field = "update_teacher")
     fun updateTeacher(@InputArgument input: TeacherInput): Teacher? =
