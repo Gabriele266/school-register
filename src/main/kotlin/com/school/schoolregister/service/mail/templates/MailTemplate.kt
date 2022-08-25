@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.mail.templates
+package com.school.schoolregister.service.mail.templates
 
 data class MailTemplate(
     var objectHtml: String,

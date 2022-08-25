@@ -1,10 +1,10 @@
-package com.school.schoolregister.services.teacher
+package com.school.schoolregister.service.teacher
 
 import com.school.schoolregister.domain.entities.Teacher
 import com.school.schoolregister.repositories.TeacherRepository
-import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.common.UpdateResult
-import com.school.schoolregister.services.mail.MailService
+import com.school.schoolregister.service.common.RemoveResult
+import com.school.schoolregister.service.common.UpdateResult
+import com.school.schoolregister.service.mail.MailService
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
@@ -17,7 +17,7 @@ class TeacherServiceImpl(
     private val mailService: MailService,
     private val mongoTemplate: MongoTemplate
 ) : TeacherService {
-    override fun saveTeacher(teacher: Teacher): Teacher {
+    override fun save(teacher: Teacher): Teacher {
         mailService.scheduleMail(
             teacher.email,
             subject = "Welcome in this school!",
@@ -25,6 +25,18 @@ class TeacherServiceImpl(
         )
 
         return teacherRepository.save(teacher)
+    }
+
+    override fun saveAll(data: List<Teacher>): List<Teacher> {
+        data.forEach {
+            mailService.scheduleMail(
+                it.email,
+                subject = "Welcome in this school!",
+                body = "Very important, do not forget to dry your plant!!"
+            )
+        }
+
+        return teacherRepository.saveAll(data)
     }
 
     override fun findTeacherById(id: String): Teacher? =

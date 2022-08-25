@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.common
+package com.school.schoolregister.service.common
 
 /**
  * Represents a generic crud service

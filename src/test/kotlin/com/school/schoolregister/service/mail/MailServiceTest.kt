@@ -1,6 +1,6 @@
-package com.school.schoolregister.services.mail
+package com.school.schoolregister.service.mail
 
-import com.school.schoolregister.services.mail.validation.mailIsValid
+import com.school.schoolregister.service.mail.validation.mailIsValid
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

@@ -1,10 +1,10 @@
-package com.school.schoolregister.services.presence
+package com.school.schoolregister.service.presence
 
 import com.school.schoolregister.domain.entities.Presence
 import com.school.schoolregister.exceptions.InvalidStudentReferenceException
 import com.school.schoolregister.exceptions.InvalidTeacherReferenceException
-import com.school.schoolregister.services.common.CRUDService
-import com.school.schoolregister.services.common.RemoveResult
+import com.school.schoolregister.service.common.CRUDService
+import com.school.schoolregister.service.common.RemoveResult
 
 interface PresenceService : CRUDService<Presence> {
     /**

@@ -1,8 +1,8 @@
-package com.school.schoolregister.services.mail
+package com.school.schoolregister.service.mail
 
 import com.school.schoolregister.SchoolRegisterApplication
-import com.school.schoolregister.services.mail.templates.MailTemplate
-import com.school.schoolregister.services.mail.validation.mailIsValid
+import com.school.schoolregister.service.mail.templates.MailTemplate
+import com.school.schoolregister.service.mail.validation.mailIsValid
 import org.slf4j.LoggerFactory
 import org.springframework.mail.MailException
 import org.springframework.mail.javamail.JavaMailSender

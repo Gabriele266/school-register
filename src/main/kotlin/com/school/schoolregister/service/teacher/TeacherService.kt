@@ -1,8 +1,8 @@
-package com.school.schoolregister.services.teacher
+package com.school.schoolregister.service.teacher
 
 import com.school.schoolregister.domain.entities.Teacher
-import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.common.UpdateResult
+import com.school.schoolregister.service.common.RemoveResult
+import com.school.schoolregister.service.common.UpdateResult
 
 /**
  * Service to manage all teachers
@@ -13,7 +13,12 @@ interface TeacherService {
      *
      * @param teacher Teacher to save
      */
-    fun saveTeacher(teacher: Teacher): Teacher
+    fun save(teacher: Teacher): Teacher
+
+    /**
+     * Save all teachers
+     */
+    fun saveAll(data: List<Teacher>): List<Teacher>
 
     /**
      * Finds a teacher by his id

@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.teacher
+package com.school.schoolregister.service.teacher
 
 import org.junit.jupiter.api.Test
 

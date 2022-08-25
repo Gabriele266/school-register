@@ -1,8 +1,8 @@
-package com.school.schoolregister.services.grade
+package com.school.schoolregister.service.grade
 
 import com.school.schoolregister.domain.entities.Grade
-import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.common.UpdateResult
+import com.school.schoolregister.service.common.RemoveResult
+import com.school.schoolregister.service.common.UpdateResult
 
 /**
  * Service to manage all the grades

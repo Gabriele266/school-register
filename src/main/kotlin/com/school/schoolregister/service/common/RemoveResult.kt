@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.common
+package com.school.schoolregister.service.common
 
 class RemoveResult<T>(
     val removeCount: Int,

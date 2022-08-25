@@ -1,7 +1,7 @@
-package com.school.schoolregister.services.student
+package com.school.schoolregister.service.student
 
 import com.school.schoolregister.domain.entities.Student
-import com.school.schoolregister.services.common.UpdateResult
+import com.school.schoolregister.service.common.UpdateResult
 
 /**
  * Service to manage all the students

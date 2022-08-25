@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.common
+package com.school.schoolregister.service.common
 
 data class UpdateResult<T>(
     val updatedCount: Int,

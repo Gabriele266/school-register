@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.mail.validation
+package com.school.schoolregister.service.mail.validation
 
 import java.util.regex.Pattern
 

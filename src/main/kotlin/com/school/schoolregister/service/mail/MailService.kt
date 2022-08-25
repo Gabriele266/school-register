@@ -1,4 +1,4 @@
-package com.school.schoolregister.services.mail
+package com.school.schoolregister.service.mail
 
 /**
  * Service to manage automatic email sending and scheduling

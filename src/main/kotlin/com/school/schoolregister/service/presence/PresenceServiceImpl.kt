@@ -1,11 +1,11 @@
-package com.school.schoolregister.services.presence
+package com.school.schoolregister.service.presence
 
 import com.school.schoolregister.domain.entities.Presence
 import com.school.schoolregister.exceptions.InvalidStudentReferenceException
 import com.school.schoolregister.repositories.PresenceRepository
-import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.student.StudentService
-import com.school.schoolregister.services.teacher.TeacherService
+import com.school.schoolregister.service.common.RemoveResult
+import com.school.schoolregister.service.student.StudentService
+import com.school.schoolregister.service.teacher.TeacherService
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria

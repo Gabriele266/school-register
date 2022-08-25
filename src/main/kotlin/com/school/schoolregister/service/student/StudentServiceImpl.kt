@@ -1,9 +1,9 @@
-package com.school.schoolregister.services.student
+package com.school.schoolregister.service.student
 
 import com.school.schoolregister.domain.entities.Student
 import com.school.schoolregister.repositories.StudentRepository
-import com.school.schoolregister.services.common.UpdateResult
-import com.school.schoolregister.services.mail.MailService
+import com.school.schoolregister.service.common.UpdateResult
+import com.school.schoolregister.service.mail.MailService
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
 

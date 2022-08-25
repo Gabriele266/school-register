@@ -1,11 +1,11 @@
-package com.school.schoolregister.services.grade
+package com.school.schoolregister.service.grade
 
 import com.school.schoolregister.domain.entities.Grade
 import com.school.schoolregister.exceptions.InvalidStudentReferenceException
 import com.school.schoolregister.repositories.GradeRepository
-import com.school.schoolregister.services.common.RemoveResult
-import com.school.schoolregister.services.common.UpdateResult
-import com.school.schoolregister.services.student.StudentService
+import com.school.schoolregister.service.common.RemoveResult
+import com.school.schoolregister.service.common.UpdateResult
+import com.school.schoolregister.service.student.StudentService
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
