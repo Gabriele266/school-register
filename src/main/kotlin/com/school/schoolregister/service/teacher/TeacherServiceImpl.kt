@@ -66,11 +66,10 @@ class TeacherServiceImpl(
         teacherRepository.count()
 
     override fun updateTeacher(teacher: Teacher): UpdateResult<Teacher> {
-        val teacherID = ObjectId(teacher.id)
-        val original = teacherRepository.findById(teacherID).orElse(null)
+        val original = teacherRepository.findById(ObjectId(teacher.id)).orElse(null)
 
         return if (original != null) {
-            teacherRepository.deleteById(teacherID)
+            teacherRepository.save(teacher)
 
             UpdateResult.successful(teacher)
         } else UpdateResult.failed()
